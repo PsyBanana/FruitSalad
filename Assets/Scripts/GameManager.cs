@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-     public RoundManager roundController; // referință către RoundController
-    public FoodManager foodManager;         // referință către FoodManager
+     public RoundManager roundController; 
+    public FoodManager foodManager;         
 
     public int playerCoins = 0; // bani jucător
 

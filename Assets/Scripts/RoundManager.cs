@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoundManager : MonoBehaviour
 {
     public FoodManager foodManager;
+    public PerkManager perkManager;
     public List<PerkData> activePerksThisRound;
 
     // Variabile pentru rundă
@@ -20,7 +21,7 @@ public class RoundManager : MonoBehaviour
     public void StartRound()
     {
         Debug.Log("Round " + currentRound + " started!");
-        currentScore = 0;
+        //currentScore = 0;
         attemptsLeft = 3;
         // aici vei adăuga logica pentru alegerea bolului și ingredientelor
 
