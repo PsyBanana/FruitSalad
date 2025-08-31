@@ -10,7 +10,7 @@ public class BowlManager : MonoBehaviour
     public int maxSlots = 5;
     public List<FoodData> currentBowl = new List<FoodData>();
 
-    public bool AddIngredient(FoodData food, List<PerkData> perks)
+    public bool AddIngredient(FoodData food, List<PerkData> perks, out string message)
     {
         if(GetUsedSlots() + food.sizeOccupied <= maxSlots)
         {
@@ -24,8 +24,10 @@ public class BowlManager : MonoBehaviour
             }
 
             currentScore += foodScore; // adaugă la scorul curent
+            message = "Ingredient added!";
             return true;
         }
+        message = "No space left in the bowl!";
         return false;
     }
     public int CalculateCurrentScore(List<PerkData> perks)

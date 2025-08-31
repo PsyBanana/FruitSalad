@@ -33,4 +33,9 @@ public class PerkManager : MonoBehaviour
 
         return finalScore;
     }
+
+    public List<PerkData> GetActivePerks()
+    {
+        return activePerks; // returnează lista actuală de perks
+    }
 }
