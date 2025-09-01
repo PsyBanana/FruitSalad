@@ -5,6 +5,8 @@ using UnityEngine;
 public class FoodManager : MonoBehaviour
 
 {
+    public Transform[] foodSpawnPoints;
+
 
     public List<FoodData> allFoods; // toate ingredientele
 
@@ -34,5 +36,45 @@ public class FoodManager : MonoBehaviour
         }
 
         return selected;
+    }
+
+    public void SpawnFoods(int count, List<PerkData> perks)
+    {
+        List<FoodData> foodsToSpawn = GetRandomFoods(count, perks);
+
+        for (int i = 0; i < foodsToSpawn.Count && i < foodSpawnPoints.Length; i++)
+        {
+            FoodData foodData = foodsToSpawn[i];
+
+            if (foodData.prefab != null)
+            {
+                // Instanțiem prefab-ul
+                GameObject spawned = Instantiate(foodData.prefab,
+                                                 foodSpawnPoints[i].position,
+                                                 foodSpawnPoints[i].rotation);
+
+                // Setăm datele în FoodDetailsTool
+                FoodDetailsTool details = spawned.GetComponent<FoodDetailsTool>();
+                if (details != null)
+                {
+             //       details.foodName = foodData.foodName;
+              //      details.score = foodData.baseScore;
+               //     details.size = foodData.sizeOccupied;
+
+                    FoodHover hover = spawned.GetComponent<FoodHover>();
+                    if (hover != null)
+                        hover.foodData = foodsToSpawn[i]; // setează datele ScriptableObject
+
+
+                    // Dacă folosești și un GameObject UI pentru tooltip
+                    if (details.foodDetails != null)
+                        details.foodDetails.SetActive(false); // ascundem tooltip la spawn
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Food {foodData.foodName} nu are prefab setat!");
+            }
+        }
     }
 }

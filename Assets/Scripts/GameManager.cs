@@ -8,14 +8,17 @@ public class GameManager : MonoBehaviour
 
     public bool shouldPlayerMove = true;
 
-    [Header("Panels")]
+    [Header("Panels & objects")]
 
     public GameObject bowlSelectPanel;
+    public bool foodHasSpawned = false;
 
+    [Header("Managers")]
+    public RoundManager roundController;
+    public FoodManager foodManager;
 
     [Header("Player & Camera")]
-     public RoundManager roundController; 
-    public FoodManager foodManager;
+
     public PlayerInteraction playerInteraction;
 
     public int PlayerCoins = 2; // bani jucător
@@ -77,6 +80,15 @@ public class GameManager : MonoBehaviour
     {
         if (bowlSelectPanel != null && playerInteraction != null)
             bowlSelectPanel.SetActive(playerInteraction.activateBowlPanel);
+    }
+
+    public void FoodHasSpawned()
+    {
+        if (!foodHasSpawned) // să nu spawnăm de 2 ori
+        {
+            foodManager.SpawnFoods(3, new List<PerkData>()); // 3 ingrediente random
+            foodHasSpawned = true;
+        }
     }
 
 }

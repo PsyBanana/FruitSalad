@@ -25,6 +25,7 @@ public class BowlSelection : MonoBehaviour
             gameManager.PlayerCoins += 3;
             bowlManager.maxSlots = 3;
             SpawnBowl(smallBowlPrefab);
+        gameManager.FoodHasSpawned();   
         gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
         gameManager.UpdateBowlPanel();
 
@@ -37,6 +38,7 @@ public class BowlSelection : MonoBehaviour
             gameManager.PlayerCoins += 1;
             bowlManager.maxSlots = 5;
             SpawnBowl(mediumBowlPrefab);
+        gameManager.FoodHasSpawned();
         gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
         gameManager.UpdateBowlPanel();
 
@@ -49,6 +51,7 @@ public class BowlSelection : MonoBehaviour
             gameManager.PlayerCoins -= 1;
             bowlManager.maxSlots = 7;
             SpawnBowl(largeBowlPrefab);
+            gameManager.FoodHasSpawned();
             gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
             gameManager.UpdateBowlPanel();
         }

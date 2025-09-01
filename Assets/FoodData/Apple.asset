@@ -16,3 +16,4 @@ MonoBehaviour:
   baseScore: 5
   icon: {fileID: 0}
   sizeOccupied: 1
+  prefab: {fileID: 2060586138541346261, guid: 797e4ab73c9db4c40b22f4aacaa18a48, type: 3}

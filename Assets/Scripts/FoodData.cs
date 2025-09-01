@@ -8,7 +8,10 @@ public class FoodData : ScriptableObject
 {
     public string foodName;     // numele fructului/ingredientului
     public int baseScore;       // scorul de bază al ingredientului
-    public Sprite icon;         // imaginea pentru UI
+   
     public int sizeOccupied;
+    public GameObject prefab;
+
+    public Sprite icon;         // imaginea pentru UI
 
 }
