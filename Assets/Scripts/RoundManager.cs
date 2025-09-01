@@ -27,7 +27,7 @@ public class RoundManager : MonoBehaviour
         attemptsLeft = 3;
         // aici vei adăuga logica pentru alegerea bolului și ingredientelor
 
-        activePerksThisRound = perkManager.GetActivePerks();
+        //activePerksThisRound = perkManager.GetActivePerks();
 
         List<FoodData> currentOptions = foodManager.GetRandomFoods(3, activePerksThisRound);
 

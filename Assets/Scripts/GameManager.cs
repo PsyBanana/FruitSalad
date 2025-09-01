@@ -4,20 +4,79 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-     public RoundManager roundController; 
-    public FoodManager foodManager;         
+      public static GameManager Instance;
 
-    public int playerCoins = 0; // bani jucător
+    public bool shouldPlayerMove = true;
+
+    [Header("Panels")]
+
+    public GameObject bowlSelectPanel;
+
+
+    [Header("Player & Camera")]
+     public RoundManager roundController; 
+    public FoodManager foodManager;
+    public PlayerInteraction playerInteraction;
+
+    public int PlayerCoins = 2; // bani jucător
+
+    public CameraMove cameraMove;
+
+    void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
+    }
 
     private void Start()
     {
-        if (roundController != null)
+        //if (roundController != null)
+        //{
+        //    roundController.StartRound(); // începe prima rundă
+        //}
+        //else
+        //{
+        //    Debug.LogError("RoundController nu este setat în GameManager!");
+        //}
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) // exemplu pentru testDa
         {
-            roundController.StartRound(); // începe prima rundă
+            Debug.Log("CameraFalse");
+            cameraMove.CameraEnterSelectMode();
         }
-        else
+
+        if (Input.GetKeyDown(KeyCode.Return)) // exemplu pentru test
         {
-            Debug.LogError("RoundController nu este setat în GameManager!");
+            Debug.Log("CameraTrue");
+            cameraMove.CameraExitSelectMode();
         }
     }
+    public void SetPlayerControl(bool canMove)
+    {
+        shouldPlayerMove = canMove;
+
+        // Blocăm sau deblocăm camera
+        if (cameraMove != null)
+        {
+            if (canMove)
+                cameraMove.CameraExitSelectMode();  // player poate roti camera și cursorul e blocat
+            else
+                cameraMove.CameraEnterSelectMode(); // player nu poate roti camera și cursorul e vizibil
+        }
+
+        // Dacă mai ai alte sisteme de blocat, le poți adăuga aici
+        // ex: block player movement scripts, UI input etc.
+    }
+
+    public void UpdateBowlPanel()
+    {
+        if (bowlSelectPanel != null && playerInteraction != null)
+            bowlSelectPanel.SetActive(playerInteraction.activateBowlPanel);
+    }
+
 }
