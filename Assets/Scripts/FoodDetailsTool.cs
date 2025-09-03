@@ -16,7 +16,7 @@ public class FoodDetailsTool : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // optional dacă vrei să rămână între scene
+          //  DontDestroyOnLoad(gameObject); // optional dacă vrei să rămână între scene
         }
         else
         {
@@ -38,6 +38,10 @@ public class FoodDetailsTool : MonoBehaviour
     {
         if (foodDetails != null && foodData != null)
         {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.x -= 250f;
+
+            foodDetails.transform.position = mousePos;
             foodDetails.SetActive(true);
             foreach (Text t in texts)
             {

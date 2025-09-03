@@ -8,6 +8,7 @@ public class FoodHover : MonoBehaviour
 
     void OnMouseEnter()
     {
+     
         if (FoodDetailsTool.Instance != null)
             FoodDetailsTool.Instance.ShowFoodDetails(foodData);
     }
@@ -16,5 +17,19 @@ public class FoodHover : MonoBehaviour
     {
         if (FoodDetailsTool.Instance != null)
             FoodDetailsTool.Instance.HideFoodDetails();
+    }
+
+    void OnMouseDown() // click pe obiect
+    {
+        // trimit către RoundManager
+        RoundManager roundManager = FindObjectOfType<RoundManager>();  // ar putea fi imbunatatit fara sa fie nevoie sa il caut de fiecare data.
+        if (roundManager != null)
+        {
+            roundManager.TryAddIngredient(foodData);
+        }
+        else
+        {
+            Debug.LogWarning("No RoundManager found in scene!");
+        }
     }
 }

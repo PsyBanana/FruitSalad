@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class RoundManager : MonoBehaviour
 {
+
+    [Header("Managers")]
     public FoodManager foodManager;
     public PerkManager perkManager;
     public BowlManager bowlManager;
 
     public List<PerkData> activePerksThisRound;
 
+    [Header("Strings")]
+
+    public GameObject currentScoreText;
+    public GameObject TotalScoreText;
+    public GameObject quotaText;
+    public GameObject attemptsText;
+
+    [Header("GameInfo")]
     // Variabile pentru rundă
     public int currentRound = 1;
     public int currentScore = 0;

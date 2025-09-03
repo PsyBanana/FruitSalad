@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,14 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            // Reload scena curentă
+            Scene currentScene = SceneManager.GetActiveScene(); // preluăm scena activă
+            SceneManager.LoadScene(currentScene.name);           // încărcăm din nou scena
+        }
+
         if (Input.GetKeyDown(KeyCode.Space)) // exemplu pentru testDa
         {
             Debug.Log("CameraFalse");

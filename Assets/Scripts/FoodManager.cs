@@ -52,7 +52,7 @@ public class FoodManager : MonoBehaviour
                 GameObject spawned = Instantiate(foodData.prefab,
                                                  foodSpawnPoints[i].position,
                                                  foodSpawnPoints[i].rotation);
-
+                Debug.Log($"Spawning food: {foodData.foodName} at point {i}");
                 // Setăm datele în FoodDetailsTool
                 FoodDetailsTool details = spawned.GetComponent<FoodDetailsTool>();
                 if (details != null)
@@ -61,14 +61,14 @@ public class FoodManager : MonoBehaviour
               //      details.score = foodData.baseScore;
                //     details.size = foodData.sizeOccupied;
 
-                    FoodHover hover = spawned.GetComponent<FoodHover>();
-                    if (hover != null)
-                        hover.foodData = foodsToSpawn[i]; // setează datele ScriptableObject
+                    //FoodHover hover = spawned.GetComponent<FoodHover>();
+                    //if (hover != null)
+                    //    hover.foodData = foodsToSpawn[i]; // setează datele ScriptableObject
 
 
-                    // Dacă folosești și un GameObject UI pentru tooltip
-                    if (details.foodDetails != null)
-                        details.foodDetails.SetActive(false); // ascundem tooltip la spawn
+                    //// Dacă folosești și un GameObject UI pentru tooltip
+                    //if (details.foodDetails != null)
+                    //    details.foodDetails.SetActive(false); // ascundem tooltip la spawn
                 }
             }
             else

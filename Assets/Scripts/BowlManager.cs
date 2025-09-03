@@ -8,6 +8,7 @@ public class BowlManager : MonoBehaviour
     public int currentScore = 0; // Bowl Score
     
     public int maxSlots = 5;
+    public int filledSlots = 0;
     public List<FoodData> currentBowl = new List<FoodData>();
 
     public bool AddIngredient(FoodData food, List<PerkData> perks, out string message)
