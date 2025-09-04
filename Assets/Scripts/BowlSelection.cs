@@ -28,6 +28,7 @@ public class BowlSelection : MonoBehaviour
         gameManager.FoodHasSpawned();   
         gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
         gameManager.UpdateBowlPanel();
+        bowlManager.UpdateStats();
 
 
     }
@@ -41,6 +42,7 @@ public class BowlSelection : MonoBehaviour
         gameManager.FoodHasSpawned();
         gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
         gameManager.UpdateBowlPanel();
+        bowlManager.UpdateStats();
 
     }
 
@@ -49,11 +51,12 @@ public class BowlSelection : MonoBehaviour
         if (gameManager.PlayerCoins >= 1)
         {
             gameManager.PlayerCoins -= 1;
-            bowlManager.maxSlots = 7;
-            SpawnBowl(largeBowlPrefab);
-            gameManager.FoodHasSpawned();
+            bowlManager.maxSlots = 7;    
+            SpawnBowl(largeBowlPrefab);   // genereaza bol
+            gameManager.FoodHasSpawned(); // genereaza mancare si se asigura ca nu apre de mai multe ori.
             gameManager.playerInteraction.activateBowlPanel = false; // setezi valoarea
-            gameManager.UpdateBowlPanel();
+            gameManager.UpdateBowlPanel(); // Afiseaza/Dezafiseaza meniul de selectare a bolului
+            bowlManager.UpdateStats(); // UI modify
         }
         else
         {

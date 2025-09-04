@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
       public static GameManager Instance;
 
     public bool shouldPlayerMove = true;
+    public bool playerHasBowl = false;
 
     [Header("Panels & objects")]
 

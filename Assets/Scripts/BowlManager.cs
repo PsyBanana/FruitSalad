@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BowlManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class BowlManager : MonoBehaviour
     public int maxSlots = 5;
     public int filledSlots = 0;
     public List<FoodData> currentBowl = new List<FoodData>();
+
+    public Text bowlSizeText;
 
     public bool AddIngredient(FoodData food, List<PerkData> perks, out string message)
     {
@@ -49,7 +52,16 @@ public class BowlManager : MonoBehaviour
         return score;
     }
 
-    public int GetUsedSlots()
+    public void UpdateStats()  //update visuals and more
+    {
+        
+        bowlSizeText.text = filledSlots + "/" + maxSlots;
+
+
+      
+    }
+
+    public int GetUsedSlots() // increase size in bowl
     {
         int used = 0;
         foreach (var food in currentBowl)
@@ -62,4 +74,6 @@ public class BowlManager : MonoBehaviour
         currentBowl.Clear();
         currentScore = 0;
     }
+
+
 }

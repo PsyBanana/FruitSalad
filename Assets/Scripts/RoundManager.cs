@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoundManager : MonoBehaviour
 {
+    [Header("Panels/Text")]
+    public Text bowlSizeText;
+    public Text scoreText;
+    public Text roundDetails;
 
     [Header("Managers")]
     public FoodManager foodManager;
@@ -14,15 +19,14 @@ public class RoundManager : MonoBehaviour
 
     [Header("Strings")]
 
-    public GameObject currentScoreText;
-    public GameObject TotalScoreText;
-    public GameObject quotaText;
-    public GameObject attemptsText;
+    
+  
 
     [Header("GameInfo")]
     // Variabile pentru rundă
     public int currentRound = 1;
     public int currentScore = 0;
+    public int roundScore = 0;    // ar trebui sa fac asta sa contina scorul rundei si sa il adun cu current score;
     public int quota = 50;
     public int attemptsLeft = 3;
 
@@ -50,14 +54,33 @@ public class RoundManager : MonoBehaviour
         string message;
         if (bowlManager.AddIngredient(food, activePerksThisRound, out message))
         {
-            currentScore = bowlManager.currentScore;
-            // actualizează scor UI
+            //currentScore = bowlManager.currentScore;
+
+            bowlManager.filledSlots += food.sizeOccupied;// actualizează Size 
+            bowlSizeText.text = bowlManager.filledSlots + "/" + bowlManager.maxSlots; // actualizeaza Size UI
+
+            roundScore = bowlManager.CalculateCurrentScore(activePerksThisRound); // Update Score
+            scoreText.text = "Score : " + roundScore;//update scor UI
         }
         else
         {
+            Debug.LogWarning("BowlIsFull");
             // arată mesaj că bolul e plin
         }
     }
+
+    public void UpdateQuota()
+    {
+        if(roundDetails != null)
+        {
+            roundDetails.text = "Quota" + roundScore + "/" + quota;
+            Debug.Log("quota updated");
+            //add some animation
+                                
+        }
+    }
+
+  
 
     // Metoda de finalizare a rundei
     public void EndRound()

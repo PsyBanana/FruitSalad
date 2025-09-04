@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public RoundManager roundManager;
+    public GameManager gameManager;
+
+
     public float interactDistance = 6f; 
     public LayerMask interactLayer;     
-    public RoundManager roundManager;   
+     
     public TableInteraction tableInteraction;
 
     public bool isConnectedToPlayer = true;   // pentru a muta camera la player sau masa.
@@ -61,9 +65,23 @@ public class PlayerInteraction : MonoBehaviour
 
                     GameManager.Instance.UpdateBowlPanel();
                 }
-                    
+
+            }
+
+            if (hit.collider.CompareTag("NPC"))
+            {
+                Debug.Log("interact With Player");
+                if(gameManager.playerHasBowl)// verifica daca player are bolul la el "Active"
+                {
+                    roundManager.UpdateQuota();
                 }
-            
+                // daca Player are bol,  sterge bolul si adauga scor to Quta.
+                //reseteaza  size cupat in bol
+                // seteaza bollSelected fasle   Astea ar trebui sa fgie in gameManager
+
+                //daca player nu are boll, nu fa nimic.
+            }
+
         }
     }
 
