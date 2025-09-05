@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BowlSelection : MonoBehaviour
 {
     public GameObject smallBowlPrefab;
@@ -12,11 +13,14 @@ public class BowlSelection : MonoBehaviour
     public BowlManager bowlManager;
 
     public Transform bowlSpawnPoint;
+    
 
 
     private void SpawnBowl(GameObject bowlPrefab)
     {
         Instantiate(bowlPrefab, bowlSpawnPoint.position, bowlSpawnPoint.rotation);
+        gameManager.playerHasBowl = true;    // lasam playerul sa interactioneze cu NPC
+        
     }
 
     public void SelectSmallBowl()
@@ -64,5 +68,13 @@ public class BowlSelection : MonoBehaviour
             // display a message on the screen;
         }
 
+    }
+
+    public void BowlReady()
+    {
+        // move back to player POV.
+        //Disable UI regarding bowl
+        //Destroy fruits
+        //desactivate Player interaction with the table.
     }
 }

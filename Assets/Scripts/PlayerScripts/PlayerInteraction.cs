@@ -6,12 +6,14 @@ public class PlayerInteraction : MonoBehaviour
 {
     public RoundManager roundManager;
     public GameManager gameManager;
+    public BowlManager bowlManager;
 
 
     public float interactDistance = 6f; 
     public LayerMask interactLayer;     
      
     public TableInteraction tableInteraction;
+    public GameObject bowlSizeFilledText;
 
     public bool isConnectedToPlayer = true;   // pentru a muta camera la player sau masa.
     public bool activateBowlPanel = false;
@@ -73,7 +75,13 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log("interact With Player");
                 if(gameManager.playerHasBowl)// verifica daca player are bolul la el "Active"
                 {
+
+                    roundManager.attemptsLeft -= 1;
                     roundManager.UpdateQuota();
+
+                    gameManager.playerHasBowl = false;
+                    bowlManager.filledSlots = 0;
+                    bowlManager.UpdateStats();
                 }
                 // daca Player are bol,  sterge bolul si adauga scor to Quta.
                 //reseteaza  size cupat in bol

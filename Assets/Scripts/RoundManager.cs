@@ -36,9 +36,10 @@ public class RoundManager : MonoBehaviour
     // Metoda de start al rundei
     public void StartRound()
     {
+        Debug.Log("StartRound() called\n" + System.Environment.StackTrace);
         Debug.Log("Round " + currentRound + " started!");
         //currentScore = 0;
-        attemptsLeft = 3;
+        // attemptsLeft = 3;     - creaza un bug, unde de fiecare data cand interactionez cu NPC seteaza attempts = 3;
         // aici vei adăuga logica pentru alegerea bolului și ingredientelor
 
         //activePerksThisRound = perkManager.GetActivePerks();
@@ -59,8 +60,8 @@ public class RoundManager : MonoBehaviour
             bowlManager.filledSlots += food.sizeOccupied;// actualizează Size 
             bowlSizeText.text = bowlManager.filledSlots + "/" + bowlManager.maxSlots; // actualizeaza Size UI
 
-            roundScore = bowlManager.CalculateCurrentScore(activePerksThisRound); // Update Score
-            scoreText.text = "Score : " + roundScore;//update scor UI
+            currentScore = bowlManager.CalculateCurrentScore(activePerksThisRound); // Update Score
+            scoreText.text = "Score : " + currentScore;//update scor UI
         }
         else
         {
@@ -73,10 +74,15 @@ public class RoundManager : MonoBehaviour
     {
         if(roundDetails != null)
         {
-            roundDetails.text = "Quota" + roundScore + "/" + quota;
+            roundScore += currentScore;
+            roundDetails.text = "Quota: " + roundScore + "/" + quota +"\n" + "Attempts:" + attemptsLeft;
             Debug.Log("quota updated");
+            currentScore = 0;
+            scoreText.text = "Score : " + currentScore;//update scor UI
+            bowlManager.ResetBowl();
+            //roundScore.text == 0;
             //add some animation
-                                
+
         }
     }
 

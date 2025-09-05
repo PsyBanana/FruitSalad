@@ -12,7 +12,7 @@ public class CameraMove : MonoBehaviour
     public float minxRotation = -60f;
     public float maxXRotation = 60f;
 
-    private bool canMove = true;
+   // private bool canMove = true;
     public bool allowRotation = true;
 
     void Start()
