@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class BowlManager : MonoBehaviour
 {
+    public FoodManager foodManager;
+    public RoundManager roundManager;
+
+    public GameObject bowlUI;
+
 
     public int currentScore = 0; // Bowl Score
     
@@ -26,6 +31,8 @@ public class BowlManager : MonoBehaviour
                 if (perk.perkType == PerkType.ScoreBonus)
                     foodScore += Mathf.CeilToInt(perk.value); // daca perk.value e int
             }
+
+            foodManager.RespawnFoods(3, roundManager.activePerksThisRound);  // Respawn food on table
 
             currentScore += foodScore; // adaugă la scorul curent
             message = "Ingredient added!";

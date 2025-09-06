@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 
     public bool shouldPlayerMove = true;
     public bool playerHasBowl = false;
+    public bool canInteractWithTable = true;
 
     [Header("Panels & objects")]
 

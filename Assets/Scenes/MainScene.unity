@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7678134}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1612263404}
+        m_TargetAssemblyTypeName: BowlSelection, Assembly-CSharp
+        m_MethodName: BowlReady
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7678134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1654,6 +1666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldPlayerMove: 1
   playerHasBowl: 1
+  canInteractWithTable: 1
   bowlSelectPanel: {fileID: 1025946791}
   foodHasSpawned: 0
   roundController: {fileID: 1593941567}
@@ -1744,11 +1757,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score
+  m_Text: 'Score: 0
 
-    Quota
+    Quota: 0/50
 
-    Attempts'
+    Attempts: 3/3'
 --- !u!222 &1140279091
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2586,6 +2599,10 @@ MonoBehaviour:
   largeBowlPrefab: {fileID: 6235483436186491274, guid: 56a1b5709727c9649b79f614e2ac5b74, type: 3}
   gameManager: {fileID: 1105514016}
   bowlManager: {fileID: 1730471715}
+  cameraMove: {fileID: 963194229}
+  foodManager: {fileID: 1817537343}
+  roundManager: {fileID: 1593941567}
+  tableInteraction: {fileID: 23821770}
   bowlSpawnPoint: {fileID: 1552346908}
 --- !u!1 &1656898560
 GameObject:
@@ -2961,6 +2978,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000fcc9d0298f8e4d932aecbbf21741f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  foodManager: {fileID: 1817537343}
+  roundManager: {fileID: 1593941567}
+  bowlUI: {fileID: 1989365692}
   currentScore: 0
   maxSlots: 5
   filledSlots: 0
@@ -3176,7 +3196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1989365693
 RectTransform:
   m_ObjectHideFlags: 0

@@ -62,6 +62,8 @@ public class RoundManager : MonoBehaviour
 
             currentScore = bowlManager.CalculateCurrentScore(activePerksThisRound); // Update Score
             scoreText.text = "Score : " + currentScore;//update scor UI
+
+            
         }
         else
         {

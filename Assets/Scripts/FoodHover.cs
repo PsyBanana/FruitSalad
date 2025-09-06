@@ -5,6 +5,9 @@ using UnityEngine;
 public class FoodHover : MonoBehaviour
 {
     public FoodData foodData; // setat când spawnează FoodManager
+    //public FoodManager foodManager;
+
+
 
     void OnMouseEnter()
     {
@@ -23,9 +26,11 @@ public class FoodHover : MonoBehaviour
     {
         // trimit către RoundManager
         RoundManager roundManager = FindObjectOfType<RoundManager>();  // ar putea fi imbunatatit fara sa fie nevoie sa il caut de fiecare data.
+       
         if (roundManager != null)
         {
             roundManager.TryAddIngredient(foodData);
+            
         }
         else
         {

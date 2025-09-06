@@ -10,6 +10,8 @@ public class FoodManager : MonoBehaviour
 
     public List<FoodData> allFoods; // toate ingredientele
 
+    private List<GameObject> spawnedFoods = new List<GameObject>(); // evidenta pentru fructele spawnate.
+
     public List<FoodData> GetRandomFoods(int count, List<PerkData> perks)
     {
         List<FoodData> pool = new List<FoodData>(allFoods);
@@ -40,6 +42,9 @@ public class FoodManager : MonoBehaviour
 
     public void SpawnFoods(int count, List<PerkData> perks)
     {
+
+        spawnedFoods.Clear();
+
         List<FoodData> foodsToSpawn = GetRandomFoods(count, perks);
 
         for (int i = 0; i < foodsToSpawn.Count && i < foodSpawnPoints.Length; i++)
@@ -54,27 +59,31 @@ public class FoodManager : MonoBehaviour
                                                  foodSpawnPoints[i].rotation);
                 Debug.Log($"Spawning food: {foodData.foodName} at point {i}");
                 // Setăm datele în FoodDetailsTool
+                spawnedFoods.Add(spawned);
+
                 FoodDetailsTool details = spawned.GetComponent<FoodDetailsTool>();
-                if (details != null)
-                {
-             //       details.foodName = foodData.foodName;
-              //      details.score = foodData.baseScore;
-               //     details.size = foodData.sizeOccupied;
 
-                    //FoodHover hover = spawned.GetComponent<FoodHover>();
-                    //if (hover != null)
-                    //    hover.foodData = foodsToSpawn[i]; // setează datele ScriptableObject
-
-
-                    //// Dacă folosești și un GameObject UI pentru tooltip
-                    //if (details.foodDetails != null)
-                    //    details.foodDetails.SetActive(false); // ascundem tooltip la spawn
-                }
             }
             else
             {
                 Debug.LogWarning($"Food {foodData.foodName} nu are prefab setat!");
             }
         }
+    }
+
+    public void ClearFoods()
+    {
+        foreach (var food in spawnedFoods)
+        {
+            if (food != null)
+                Destroy(food); // distruge fiecare aliment spawn-uit
+        }
+        spawnedFoods.Clear();
+    }
+
+    public void RespawnFoods(int count, List<PerkData> perks)
+    {
+        ClearFoods();
+        SpawnFoods(count, perks);
     }
 }

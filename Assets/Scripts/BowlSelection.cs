@@ -11,6 +11,10 @@ public class BowlSelection : MonoBehaviour
 
     public GameManager gameManager;
     public BowlManager bowlManager;
+    public CameraMove cameraMove;
+    public FoodManager foodManager;
+    public RoundManager roundManager;
+    public TableInteraction tableInteraction;
 
     public Transform bowlSpawnPoint;
     
@@ -20,6 +24,8 @@ public class BowlSelection : MonoBehaviour
     {
         Instantiate(bowlPrefab, bowlSpawnPoint.position, bowlSpawnPoint.rotation);
         gameManager.playerHasBowl = true;    // lasam playerul sa interactioneze cu NPC
+        bowlManager.bowlUI.SetActive(true);
+        //foodManager.SpawnFoods(3, roundManager.activePerksThisRound);
         
     }
 
@@ -72,9 +78,12 @@ public class BowlSelection : MonoBehaviour
 
     public void BowlReady()
     {
-        // move back to player POV.
-        //Disable UI regarding bowl
-        //Destroy fruits
+        tableInteraction.FocusOnPlayer();// move back to player POV.
+
+        bowlManager.bowlUI.SetActive(false);//Disable UI regarding bowl 
+        foodManager.ClearFoods();//Destroy fruits
+
         //desactivate Player interaction with the table.
+        gameManager.foodHasSpawned = false; // ne asiguram ca putem spawna mancarea again.
     }
 }

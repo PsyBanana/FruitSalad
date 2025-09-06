@@ -35,7 +35,7 @@ public class PlayerInteraction : MonoBehaviour
 
             else
             {
-                tableInteraction.FocusOnPlayer();
+             //   tableInteraction.FocusOnPlayer();
                 isConnectedToPlayer = true;
                 activateBowlPanel = false;
                 GameManager.Instance.UpdateBowlPanel();
