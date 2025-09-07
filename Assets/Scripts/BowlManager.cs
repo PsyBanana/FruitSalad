@@ -28,7 +28,7 @@ public class BowlManager : MonoBehaviour
             int foodScore = food.baseScore;
             foreach (var perk in perks)
             {
-                if (perk.perkType == PerkType.ScoreBonus)
+                if (perk.category == PerkType.ExtraScore)
                     foodScore += Mathf.CeilToInt(perk.value); // daca perk.value e int
             }
 
@@ -39,25 +39,46 @@ public class BowlManager : MonoBehaviour
             return true;
         }
         message = "No space left in the bowl!";
-        return false;
+        return false;   
     }
     public int CalculateCurrentScore(List<PerkData> perks)
     {
         int score = 0;
+
+        // scor de bază
         foreach (var food in currentBowl)
             score += food.baseScore;
 
-        // aplic perks care cresc scorul
+        // aplic perks
         foreach (var perk in perks)
         {
-            if (perk.perkType == PerkType.ScoreBonus)
+            switch (perk.category)
             {
-                score += Mathf.CeilToInt(perk.value);
+                case PerkType.Multiplier:
+                case PerkType.ExtraScore:
+                case PerkType.OnlySize:
+                    score = perk.Apply(this, score);
+
+                    break;
+
+                case PerkType.SpawnRate:
+                    // nu afectează scorul direct, se gestionează în FoodManager
+                    break;
             }
         }
 
         return score;
     }
+
+    private bool AllFoodsInBowlHaveSize(int size)
+    {
+        foreach (var food in currentBowl)
+            if (food.sizeOccupied != size)
+                return false;
+        return true;
+    }
+
+
 
     public void UpdateStats()  //update visuals and more
     {

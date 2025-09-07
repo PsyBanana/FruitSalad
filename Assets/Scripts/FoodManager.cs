@@ -20,7 +20,7 @@ public class FoodManager : MonoBehaviour
         {
             foreach (FoodData food in pool.ToArray())
             {
-                if (!string.IsNullOrEmpty(perk.targetIngredient) && perk.targetIngredient == food.foodName)
+                if (!string.IsNullOrEmpty(perk.spawnTargetIngredient) && perk.spawnTargetIngredient == food.foodName)
                 {
                     int bonusCopies = Mathf.CeilToInt(perk.value);
                     for (int b = 0; b < bonusCopies; b++)

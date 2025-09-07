@@ -36,13 +36,14 @@ public class RoundManager : MonoBehaviour
     // Metoda de start al rundei
     public void StartRound()
     {
-        Debug.Log("StartRound() called\n" + System.Environment.StackTrace);
+        
         Debug.Log("Round " + currentRound + " started!");
         //currentScore = 0;
         // attemptsLeft = 3;     - creaza un bug, unde de fiecare data cand interactionez cu NPC seteaza attempts = 3;
         // aici vei adăuga logica pentru alegerea bolului și ingredientelor
 
-        //activePerksThisRound = perkManager.GetActivePerks();
+        activePerksThisRound = perkManager.GetActivePerks();
+        Debug.Log("Active perks this round: " + activePerksThisRound.Count);
 
         List<FoodData> currentOptions = foodManager.GetRandomFoods(3, activePerksThisRound);
 

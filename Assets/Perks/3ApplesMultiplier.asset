@@ -12,7 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f3ea4622db5dd46aacb1f6f2fd325d, type: 3}
   m_Name: 3ApplesMultiplier
   m_EditorClassIdentifier: 
-  perkName: 3ApplesMultiplier
-  perkType: 0
-  value: 1
-  targetIngredient: Apple
+  perkName: AppleMultiplier
+  description: Introducing 3 Banans Multiplies score x2
+  value: 5
+  targetIngredients:
+  - {fileID: 11400000, guid: c733d75697aa57446a38eaabc2957604, type: 2}
+  - {fileID: 11400000, guid: c733d75697aa57446a38eaabc2957604, type: 2}
+  - {fileID: 11400000, guid: c733d75697aa57446a38eaabc2957604, type: 2}
+  requiredIngredientCount: 3
+  onlySizeOccupied: 0
+  spawnTargetIngredient: 
+  cost: 0
+  rarity: 0
+  category: 0

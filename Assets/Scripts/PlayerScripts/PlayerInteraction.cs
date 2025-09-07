@@ -55,7 +55,7 @@ public class PlayerInteraction : MonoBehaviour
                 Debug.Log("You hit" + hit.collider.name);
                 if (hit.collider.CompareTag("Table"))
                 {
-                    Debug.Log("Interacted with table!");
+                    
                     roundManager.StartRound(); // pornește runda
 
                 if (isConnectedToPlayer)
@@ -63,7 +63,7 @@ public class PlayerInteraction : MonoBehaviour
                     tableInteraction.FocusOnTable();
                     isConnectedToPlayer = false;
                     activateBowlPanel = true;
-                    Debug.Log("camera Moves to Table");
+                    
 
                     GameManager.Instance.UpdateBowlPanel();
                 }
@@ -72,7 +72,7 @@ public class PlayerInteraction : MonoBehaviour
 
             if (hit.collider.CompareTag("NPC"))
             {
-                Debug.Log("interact With Player");
+                
                 if(gameManager.playerHasBowl)// verifica daca player are bolul la el "Active"
                 {
 
